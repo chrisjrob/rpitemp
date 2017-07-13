@@ -1,0 +1,3 @@
+<% FOR sensor IN sensors.keys %>
+  <p><% sensor %>: <% sensors.$sensor.temperature %></p>
+<% END %>
