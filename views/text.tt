@@ -1,1 +1,2 @@
-<% FOR sensor IN sensors.keys %><% sensor %>:<% sensors.$sensor.temperature %><% END %>
+<% FOR sensor IN sensors.keys %><% sensor %>:<% sensors.$sensor.temperature %>
+<% END %>
