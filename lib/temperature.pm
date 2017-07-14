@@ -5,6 +5,7 @@ our $VERSION = '0.1';
 
 get '/view' => \&view_temperatures;
 get '/json' => \&json_temperatures;
+get '/text' => \&text_temperatures;
 
 true;
 
@@ -16,10 +17,18 @@ sub json_temperatures {
   };
 }
 
+sub text_temperatures {
+  my $sensors = get_temperature();
+
+  return template "text", {
+    sensors => $sensors,
+  }, { layout => undef };
+}
+
 sub view_temperatures {
   my $sensors = get_temperature();
 
-  return template "temperature", {
+  return template "html", {
     sensors => $sensors,
   };
 }
