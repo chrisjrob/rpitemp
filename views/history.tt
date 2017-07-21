@@ -1,4 +1,5 @@
 <% USE date %>
+<% USE Number.Format %>
 
 <table>
     <tr>
@@ -11,7 +12,7 @@
     <tr>
         <td><% date.format(timestamp, format => '%F %H:%M:%S') %></td>
     <% FOR sensor IN history.$timestamp.keys.sort %>
-        <td><% history.$timestamp.$sensor %></td>
+        <td><% history.$timestamp.$sensor | format_number(3,3) %></td>
     <% END %>
     </tr>
 <% END %>
