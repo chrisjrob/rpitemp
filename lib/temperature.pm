@@ -3,11 +3,21 @@ use Dancer ':syntax';
 
 our $VERSION = '0.1';
 
-get '/view' => \&view_temperatures;
-get '/json' => \&json_temperatures;
-get '/text' => \&text_temperatures;
+get '/live/?'           => \&view_temperatures;
+get '/live/json/?'      => \&json_temperatures;
+get '/live/text/?'      => \&text_temperatures;
+
+get '/history/json/?'   => \&json_history;
 
 true;
+
+sub json_history {
+    my $history = load_json_from_file( config->{files}{history} );
+
+    return {
+        history => $history,
+    };
+}
 
 sub json_temperatures {
   my $sensors = get_temperature();
@@ -98,5 +108,17 @@ sub read_file {
     or die "Cannot close $file: $!";
 
   return $text;
+}
+
+sub load_json_from_file {
+    my $file = shift;
+
+    my $json = '{}';
+    if ( (defined $file) and (-e $file) ) {
+        $json = read_file $file;
+    }
+    my $data  = from_json($json, {utf8 => 0}); 
+
+    return $data;
 }
 

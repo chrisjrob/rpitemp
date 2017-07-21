@@ -5,7 +5,7 @@
 # Your application's name
 appname: "temperature"
 
-environment: "production"
+environment: "development"
 
 # The default layout to use for your application (located in
 # views/layouts/main.tt)
@@ -35,4 +35,8 @@ engines:
 device:
   path: "/sys/bus/w1/devices"
   name: "w1_slave"
+
+files:
+  rough: 'readings-rough.json'
+  history: 'readings-valid.json'
 
