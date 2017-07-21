@@ -8,9 +8,17 @@ get '/live/json/?'      => \&json_temperatures;
 get '/live/text/?'      => \&text_temperatures;
 
 get '/history/json/?'   => \&json_history;
+get '/history/?'        => \&view_history;
 
 true;
 
+sub view_history {
+    my $history = load_json_from_file( config->{files}{history} );
+
+    return template "history", {
+        history => $history,
+    };
+}
 sub json_history {
     my $history = load_json_from_file( config->{files}{history} );
 

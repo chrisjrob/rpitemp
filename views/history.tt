@@ -1,0 +1,18 @@
+<% USE date %>
+
+<table>
+    <tr>
+        <th>Date and Time</th>
+        <th>Sensor 1</th>
+        <th>Sensor 2</th>
+    </tr>
+
+<% FOR timestamp IN history.keys.sort.reverse %>
+    <tr>
+        <td><% date.format(timestamp, format => '%F %H:%M:%S') %></td>
+    <% FOR sensor IN history.$timestamp.keys.sort %>
+        <td><% history.$timestamp.$sensor %></td>
+    <% END %>
+    </tr>
+<% END %>
+</table>
