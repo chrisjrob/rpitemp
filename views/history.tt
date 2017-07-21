@@ -26,7 +26,7 @@
 
 <% FOR timestamp IN page.page_data %>
     <tr>
-        <td><% date.format(timestamp, format => '%F %H:%M:%S') %></td>
+        <td><% date.format(timestamp, format => '%F %H:%M:%S', locale => 'en_GB') %></td>
     <% FOR sensor IN history.$timestamp.keys.sort %>
         <td><% history.$timestamp.$sensor | format_number(3,3) %></td>
     <% END %>
