@@ -2,13 +2,29 @@
 <% USE Number.Format %>
 <% USE page = Pagination(history.keys.sort.reverse, current_page, entries_per_page) %>
 
+<h1>Temperature History</h1>
+
+<p>Page <% page.current_page %> of <% page.last_page %></p>
+
+<% url = '/history?' %>
+<ul class="buttons">
+<% IF page.current_page > 1 %>
+    <li><a class="button" href="<% url %>page=<% page.first_page %>">First page</a></li>
+    <li><a class="button" href="<% url %>page=<% page.previous_page %>">Previous page</a></li>
+<% END %>
+    <li><a class="button" href="<% url %>page=<% page.current_page %>">This page</a></li>
+<% IF page.current_page != page.last_page %>
+    <li><a class="button" href="<% url %>page=<% page.next_page %>">Next page</a></li>
+    <li><a class="button" href="<% url %>page=<% page.last_page %>">Last page</a></li>
+<% END %>
+</ul>
+
 <table>
     <tr>
         <th>Date and Time</th>
         <th>Sensor 1</th>
         <th>Sensor 2</th>
     </tr>
-
 
 <% FOR timestamp IN page.page_data %>
     <tr>

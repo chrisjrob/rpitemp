@@ -17,7 +17,7 @@ sub view_history {
 
     return template "history", {
         current_page        => params->{page},
-        entries_per_page    => 50,
+        entries_per_page    => 30,
         history             => $history,
     };
 }
