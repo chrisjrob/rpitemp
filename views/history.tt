@@ -1,5 +1,6 @@
 <% USE date %>
 <% USE Number.Format %>
+<% USE page = Pagination(history.keys.sort.reverse, current_page, entries_per_page) %>
 
 <table>
     <tr>
@@ -8,7 +9,8 @@
         <th>Sensor 2</th>
     </tr>
 
-<% FOR timestamp IN history.keys.sort.reverse %>
+
+<% FOR timestamp IN page.page_data %>
     <tr>
         <td><% date.format(timestamp, format => '%F %H:%M:%S') %></td>
     <% FOR sensor IN history.$timestamp.keys.sort %>

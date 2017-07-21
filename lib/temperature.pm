@@ -16,7 +16,9 @@ sub view_history {
     my $history = load_json_from_file( config->{files}{history} );
 
     return template "history", {
-        history => $history,
+        current_page        => params->{page},
+        entries_per_page    => 50,
+        history             => $history,
     };
 }
 sub json_history {
