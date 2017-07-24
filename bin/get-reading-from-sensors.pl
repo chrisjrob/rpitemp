@@ -123,14 +123,14 @@ sub read_temperature {
 sub read_file {
   my $file = shift;
 
-  open(my $fh_sensor, "<", $file)
+  open(my $fh, "<", $file)
     or die "Cannot open $file for reading: $!";
 
   local $/ = undef;
 
-  my $text = <$fh_sensor>;
+  my $text = <$fh>;
 
-  close($fh_sensor) 
+  close($fh) 
     or die "Cannot close $file: $!";
 
   return $text;

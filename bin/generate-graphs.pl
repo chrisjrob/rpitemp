@@ -81,7 +81,6 @@ sub date_from_epoch {
 sub load_json_from_file {
     my $file = shift;
 
-    use File::Slurp;
     use JSON;
 
     my $json = '{}';
@@ -91,5 +90,21 @@ sub load_json_from_file {
     my $data  = from_json($json, {utf8 => 0}); 
 
     return $data;
+}
+
+sub read_file {
+  my $file = shift;
+
+  open(my $fh, "<", $file)
+    or die "Cannot open $file for reading: $!";
+
+  local $/ = undef;
+
+  my $text = <$fh>;
+
+  close($fh) 
+    or die "Cannot close $file: $!";
+
+  return $text;
 }
 
