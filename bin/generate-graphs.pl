@@ -85,7 +85,7 @@ sub load_json_from_file {
 
     my $json = '{}';
     if ( (defined $file) and (-e $file) ) {
-        $json = read_file $file;
+        $json = read_file($file);
     }
     my $data  = from_json($json, {utf8 => 0}); 
 
